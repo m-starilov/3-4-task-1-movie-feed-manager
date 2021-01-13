@@ -25,13 +25,8 @@ public class MovieFeedManager {
 
   public MovieFeed[] getAll() {
     if (movies.length < feedLength) {
-      MovieFeed[] result = new MovieFeed[movies.length];
-      for (int i = 0; i < movies.length; i++) {
-        int index = movies.length - i - 1;
-        result[i] = movies[index];
-      }
-      return result;
-    } else {
+      feedLength = movies.length;
+    }
       MovieFeed[] result = new MovieFeed[feedLength];
       for (int i = 0; i < feedLength; i++) {
         int index = movies.length - i - 1;
@@ -40,5 +35,5 @@ public class MovieFeedManager {
       return result;
     }
   }
-}
+
 
