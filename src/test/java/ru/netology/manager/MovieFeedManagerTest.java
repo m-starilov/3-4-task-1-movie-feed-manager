@@ -63,7 +63,7 @@ public class MovieFeedManagerTest {
         manager.add(tenth);
 
         MovieFeed[] actual = manager.getAll();
-        MovieFeed[] expected = new MovieFeed[]{tenth, ninth, eighth, seventh, sixth, fifth,fourth, third, second, first};
+        MovieFeed[] expected = new MovieFeed[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }
@@ -83,7 +83,7 @@ public class MovieFeedManagerTest {
         manager.add(eleventh);
 
         MovieFeed[] actual = manager.getAll();
-        MovieFeed[] expected = new MovieFeed[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth,fourth, third, second};
+        MovieFeed[] expected = new MovieFeed[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
 
         assertArrayEquals(expected, actual);
     }
