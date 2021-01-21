@@ -1,12 +1,23 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.MovieFeed;
+import ru.netology.repository.MovieFeedRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 public class MovieFeedManagerTest {
-    MovieFeedManager manager = new MovieFeedManager();
+    @Mock
+    private MovieFeedRepository repository;
+    @InjectMocks
+    private MovieFeedManager manager;
     private MovieFeed first = new MovieFeed(1, "url1", "Movie 1", "Genre 1");
     private MovieFeed second = new MovieFeed(2, "url2", "Movie 2", "Genre 2");
     private MovieFeed third = new MovieFeed(3, "url3", "Movie 3", "Genre 3");
@@ -21,142 +32,141 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowNoneFromTen() {
+        MovieFeed[] returned = new MovieFeed[]{};
+        doReturn(returned).when(repository).findAll();
+
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowOneFromTen() {
-        manager.add(first);
+        MovieFeed[] returned = new MovieFeed[]{first};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowThreeFromTen() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{third, second, first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowTenFromTen() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowTenFromEleven() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleventh);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
-        MovieFeed[] expected = new MovieFeed[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        MovieFeed[] expected = new MovieFeed[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth,fourth, third, second};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowNoneFromFive() {
         MovieFeedManager manager = new MovieFeedManager(5);
 
+        MovieFeed[] returned = new MovieFeed[]{};
+        doReturn(returned).when(repository).findAll();
+
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowOneFromFive() {
         MovieFeedManager manager = new MovieFeedManager(5);
 
-        manager.add(first);
+        MovieFeed[] returned = new MovieFeed[]{first};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowThreeFromFive() {
         MovieFeedManager manager = new MovieFeedManager(5);
 
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{third, second, first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowFiveFromFive() {
-        MovieFeedManager manager = new MovieFeedManager(5);
+        MovieFeedManager manager2 = new MovieFeedManager(5);
 
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowFiveFromNine() {
         MovieFeedManager manager = new MovieFeedManager(5);
 
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
+        MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth};
+        doReturn(returned).when(repository).findAll();
 
         MovieFeed[] actual = manager.getAll();
         MovieFeed[] expected = new MovieFeed[]{ninth, eighth, seventh, sixth, fifth};
 
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 }

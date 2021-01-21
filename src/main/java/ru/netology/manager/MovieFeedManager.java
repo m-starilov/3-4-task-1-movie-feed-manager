@@ -1,13 +1,15 @@
 package ru.netology.manager;
 
 import ru.netology.domain.MovieFeed;
+import ru.netology.repository.MovieFeedRepository;
 
 public class MovieFeedManager {
 
-    private MovieFeed[] movies = new MovieFeed[0];
+    private MovieFeedRepository repository;
     private int feedLength = 10;
 
-    public MovieFeedManager() {
+    public MovieFeedManager(MovieFeedRepository repository) {
+        this.repository = repository;
     }
 
     public MovieFeedManager(int feedLength) {
@@ -15,15 +17,11 @@ public class MovieFeedManager {
     }
 
     public void add(MovieFeed movie) {
-        int length = movies.length + 1;
-        MovieFeed[] tmp = new MovieFeed[length];
-        System.arraycopy(movies, 0, tmp, 0, movies.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = movie;
-        movies = tmp;
+       repository.save(movie);
     }
 
     public MovieFeed[] getAll() {
+        MovieFeed[] movies = repository.findAll();
         if (movies.length < feedLength) {
             feedLength = movies.length;
         }
