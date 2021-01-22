@@ -11,13 +11,16 @@ public class MovieFeedManager {
     public MovieFeedManager(MovieFeedRepository repository) {
         this.repository = repository;
     }
+    public int getFeedLength() {
+        return feedLength;
+    }
 
-    public MovieFeedManager(int feedLength) {
+    public void setFeedLength(int feedLength) {
         this.feedLength = feedLength;
     }
 
     public void add(MovieFeed movie) {
-       repository.save(movie);
+        repository.save(movie);
     }
 
     public MovieFeed[] getAll() {
@@ -33,5 +36,3 @@ public class MovieFeedManager {
         return result;
     }
 }
-
-

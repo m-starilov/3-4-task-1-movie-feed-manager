@@ -97,8 +97,7 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowNoneFromFive() {
-        MovieFeedManager manager = new MovieFeedManager(5);
-
+        manager.setFeedLength(5);
         MovieFeed[] returned = new MovieFeed[]{};
         doReturn(returned).when(repository).findAll();
 
@@ -112,8 +111,7 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowOneFromFive() {
-        MovieFeedManager manager = new MovieFeedManager(5);
-
+        manager.setFeedLength(5);
         MovieFeed[] returned = new MovieFeed[]{first};
         doReturn(returned).when(repository).findAll();
 
@@ -127,8 +125,7 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowThreeFromFive() {
-        MovieFeedManager manager = new MovieFeedManager(5);
-
+        manager.setFeedLength(5);
         MovieFeed[] returned = new MovieFeed[]{first, second, third};
         doReturn(returned).when(repository).findAll();
 
@@ -142,8 +139,7 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowFiveFromFive() {
-        MovieFeedManager manager2 = new MovieFeedManager(5);
-
+        manager.setFeedLength(5);
         MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth};
         doReturn(returned).when(repository).findAll();
 
@@ -157,8 +153,7 @@ public class MovieFeedManagerTest {
 
     @Test
     public void shouldShowFiveFromNine() {
-        MovieFeedManager manager = new MovieFeedManager(5);
-
+        manager.setFeedLength(5);
         MovieFeed[] returned = new MovieFeed[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth};
         doReturn(returned).when(repository).findAll();
 
